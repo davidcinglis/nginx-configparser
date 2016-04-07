@@ -1,3 +1,5 @@
 *.o
 *.a
 config_parser_test
+*.sublime-project
+*.sublime-workspace
