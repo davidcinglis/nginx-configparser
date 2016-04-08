@@ -29,6 +29,8 @@ TEST_F(NginxStringConfigTest, ValidSyntaxConfig) {
     EXPECT_EQ("foo", config_.statements_.at(0)->tokens_.at(0)) << "Error: tokenized statement incorrectly";
 }
 
-TEST_F(NginxStringConfigTest, DoubleNestedConfig) {
+TEST_F(NginxStringConfigTest, NestedConfig) {
     EXPECT_TRUE(ParseString("server { \n server { listen 80; } \n }")) << "Error: failed to parse doubly nested braces correctly";
+    EXPECT_TRUE(ParseString("server { \n server { \n server { listen 80; } \n foo bar; \n } \n }")) <<
+        "Error, failed to parse complex expression correctly";
 }
